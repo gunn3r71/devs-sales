@@ -4,5 +4,17 @@
   "description": "API de autenticação devs sales",
   "main": "index.js",
   "license": "MIT",
-  "author": "Lucas Pereira"
+  "author": "Lucas Pereira",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "startDev": "nodemon app.js"
+  }
 }
