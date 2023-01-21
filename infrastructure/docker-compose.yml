@@ -1,0 +1,57 @@
+version: '3'
+services:
+  devs-sales-auth-db:
+    image: postgres:latest
+    container_name: devs_sales_auth_db
+    restart: always
+    hostname: "auth.devssales.postgres"
+    environment:
+      - POSTGRES_DB=authdb
+      - POSTGRES_USER=application
+      - POSTGRES_PASSWORD=@uthP@ss
+    networks:
+      - devs-sales-network
+    ports:
+      - 5433:5432
+  devs-sales-product-db:
+    image: postgres:latest
+    container_name: devs_sales_product_db
+    hostname: "product.devssales.postgres"
+    restart: always
+    environment:
+      - POSTGRES_DB=productdb
+      - POSTGRES_USER=application
+      - POSTGRES_PASSWORD=pr0ductP@ss
+    networks:
+      - devs-sales-network
+    ports:
+      - 5434:5432
+
+  devs-sales-sales-db:
+    image: tutum/mongodb
+    container_name: devs_sales_sales_db
+    hostname: "sales.devssales.mongodb"
+    restart: always
+    environment:
+      - MONGODB_USER=application
+      - MONGODB_PASSWORD=s@l3sP@ss
+      - MONGODB_DATABASE=salesdb
+    networks:
+      - devs-sales-network
+    ports: 
+      - 27017:27017
+      - 28017:28017
+
+  devs-sales-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: devs_sales_rabbitmq
+    hostname: "rabbitmq.devssales"
+    networks:
+      - devs-sales-network
+    ports:
+      - 5672:5672
+      - 25676:25676
+      - 15672:15672
+
+networks:
+  devs-sales-network:
